@@ -8,11 +8,12 @@ import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 
- public class initCamera {
+
+ class initCamera {
      public OpenCvCamera externalCamera;
 
 
-    public void initExternalCamera() {
+    private void initExternalCamera() {
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
                 "cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName()
         );
