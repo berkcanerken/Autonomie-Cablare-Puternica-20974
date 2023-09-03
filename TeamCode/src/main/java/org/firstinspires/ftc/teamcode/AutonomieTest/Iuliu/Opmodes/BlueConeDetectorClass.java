@@ -4,33 +4,24 @@ import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstan
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.util.ElapsedTime;
-import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.teamcode.AutonomieTest.Iuliu.BlueConeDetector.Classes.BlueConeDetector;
 import org.firstinspires.ftc.teamcode.software.OpenCV.initCamera;
 import org.opencv.core.Point;
 import org.openftc.easyopencv.OpenCvCamera;
-import org.openftc.easyopencv.OpenCvCameraFactory;
-import org.openftc.easyopencv.OpenCvCameraRotation;
 
 @Autonomous(name = "ColorDetectionAutonomous", group = "Iuliu")
 public class BlueConeDetectorClass extends LinearOpMode {
 
-    ElapsedTime timer;
 
     OpenCvCamera externalCamera;
-     public static BlueConeDetector pipeline;
+    BlueConeDetector pipeline;
 
     @Override
     public void runOpMode() throws InterruptedException {
-        // Initialize the hardwareMap
+        // Initialization of hardwareMap is handled by FTC framework
 
-
-        // Create an instance of initCamera
-        initCamera camera = new initCamera();
-
-        // Call the initExternalCamera method on the camera instance
-        camera.initExternalCamera();
+        // Create an instance of initCamera and pass hardwareMap to the constructor
+        initCamera camera = new initCamera(hardwareMap);
 
         // Initialize the camera and pipeline
         externalCamera = camera.externalCamera;
