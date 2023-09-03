@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.TuningAndTrajectories.Constants;
+package org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants;
 
 import androidx.annotation.NonNull;
 

@@ -1,10 +1,10 @@
 package org.firstinspires.ftc.teamcode.TuningAndTrajectories.Dashboard;
 
-import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.Constants.DriveConstants.MAX_ACCEL;
-import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.Constants.DriveConstants.MAX_VEL;
-import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.Constants.DriveConstants.MOTOR_VELO_PID;
-import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.Constants.DriveConstants.RUN_USING_ENCODER;
-import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.Constants.DriveConstants.kV;
+import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.DriveConstants.MAX_ACCEL;
+import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.DriveConstants.MAX_VEL;
+import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.DriveConstants.MOTOR_VELO_PID;
+import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.DriveConstants.RUN_USING_ENCODER;
+import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.DriveConstants.kV;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
@@ -20,7 +20,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.RobotLog;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.TuningAndTrajectories.Constants.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.SampleMecanumDrive;
 
 import java.util.List;
 

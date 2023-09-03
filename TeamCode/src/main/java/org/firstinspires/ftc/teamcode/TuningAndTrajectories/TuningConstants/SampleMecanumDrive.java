@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.TuningAndTrajectories.Constants;
+package org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants;
 
 import androidx.annotation.NonNull;
 
@@ -19,11 +19,14 @@ import com.acmerobotics.roadrunner.trajectory.constraints.TrajectoryAcceleration
 import com.acmerobotics.roadrunner.trajectory.constraints.TrajectoryVelocityConstraint;
 import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 import com.qualcomm.robotcore.hardware.configuration.typecontainers.MotorConfigurationType;
 
@@ -37,17 +40,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.Constants.DriveConstants.MAX_ACCEL;
-import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.Constants.DriveConstants.MAX_ANG_ACCEL;
-import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.Constants.DriveConstants.MAX_ANG_VEL;
-import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.Constants.DriveConstants.MAX_VEL;
-import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.Constants.DriveConstants.MOTOR_VELO_PID;
-import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.Constants.DriveConstants.RUN_USING_ENCODER;
-import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.Constants.DriveConstants.TRACK_WIDTH;
-import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.Constants.DriveConstants.encoderTicksToInches;
-import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.Constants.DriveConstants.kA;
-import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.Constants.DriveConstants.kStatic;
-import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.Constants.DriveConstants.kV;
+import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.DriveConstants.MAX_ACCEL;
+import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.DriveConstants.MAX_ANG_ACCEL;
+import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.DriveConstants.MAX_ANG_VEL;
+import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.DriveConstants.MAX_VEL;
+import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.DriveConstants.MOTOR_VELO_PID;
+import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.DriveConstants.RUN_USING_ENCODER;
+import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.DriveConstants.TRACK_WIDTH;
+import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.DriveConstants.encoderTicksToInches;
+import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.DriveConstants.kA;
+import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.DriveConstants.kStatic;
+import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.DriveConstants.kV;
 
 /*
  * Simple mecanum drive hardware implementation for REV hardware.
@@ -71,6 +74,8 @@ public class SampleMecanumDrive extends MecanumDrive {
     private TrajectoryFollower follower;
 
     private DcMotorEx leftFront, leftRear, rightRear, rightFront;
+    public static Servo servo;
+    public static ColorSensor sensor;
     private List<DcMotorEx> motors;
 
     private IMU imu;
@@ -79,7 +84,7 @@ public class SampleMecanumDrive extends MecanumDrive {
     private List<Integer> lastEncPositions = new ArrayList<>();
     private List<Integer> lastEncVels = new ArrayList<>();
 
-    public SampleMecanumDrive(HardwareMap hardwareMap) {
+    public  SampleMecanumDrive(HardwareMap hardwareMap) {
         super(kV, kA, kStatic, TRACK_WIDTH, TRACK_WIDTH, LATERAL_MULTIPLIER);
 
         follower = new HolonomicPIDVAFollower(TRANSLATIONAL_PID, TRANSLATIONAL_PID, HEADING_PID,
@@ -96,16 +101,21 @@ public class SampleMecanumDrive extends MecanumDrive {
         // TODO: adjust the names of the following hardware devices to match your configuration
         imu = hardwareMap.get(IMU.class, "imu");
         IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(
-                DriveConstants.LOGO_FACING_DIR, DriveConstants.USB_FACING_DIR));
+                RevHubOrientationOnRobot.LogoFacingDirection.UP,
+                RevHubOrientationOnRobot.UsbFacingDirection.FORWARD));
         imu.initialize(parameters);
 
-        leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
-        leftRear = hardwareMap.get(DcMotorEx.class, "leftRear");
-        rightRear = hardwareMap.get(DcMotorEx.class, "rightRear");
-        rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
+
+        leftFront = hardwareMap.get(DcMotorEx.class, "motorLF");
+        leftRear = hardwareMap.get(DcMotorEx.class, "motorLB");
+        rightRear = hardwareMap.get(DcMotorEx.class, "motorRB");
+        rightFront = hardwareMap.get(DcMotorEx.class, "motorRF");
+
+        servo = hardwareMap.servo.get("servo");
+        sensor = hardwareMap.colorSensor.get("sensor");
+
 
         motors = Arrays.asList(leftFront, leftRear, rightRear, rightFront);
-
         for (DcMotorEx motor : motors) {
             MotorConfigurationType motorConfigurationType = motor.getMotorType().clone();
             motorConfigurationType.setAchieveableMaxRPMFraction(1.0);
@@ -123,6 +133,8 @@ public class SampleMecanumDrive extends MecanumDrive {
         }
 
         // TODO: reverse any motors using DcMotor.setDirection()
+        leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftRear.setDirection(DcMotorSimple.Direction.REVERSE);
 
         List<Integer> lastTrackingEncPositions = new ArrayList<>();
         List<Integer> lastTrackingEncVels = new ArrayList<>();

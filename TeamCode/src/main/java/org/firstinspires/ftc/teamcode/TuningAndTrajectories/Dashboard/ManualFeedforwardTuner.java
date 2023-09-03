@@ -1,11 +1,10 @@
 package org.firstinspires.ftc.teamcode.TuningAndTrajectories.Dashboard;
 
-import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.Constants.DriveConstants.MAX_ACCEL;
-import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.Constants.DriveConstants.MAX_VEL;
-import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.Constants.DriveConstants.RUN_USING_ENCODER;
-import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.Constants.DriveConstants.kA;
-import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.Constants.DriveConstants.kStatic;
-import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.Constants.DriveConstants.kV;
+import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.DriveConstants.MAX_ACCEL;
+import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.DriveConstants.MAX_VEL;
+import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.DriveConstants.kA;
+import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.DriveConstants.kStatic;
+import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.DriveConstants.kV;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
@@ -19,10 +18,9 @@ import com.acmerobotics.roadrunner.util.NanoClock;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
-import com.qualcomm.robotcore.util.RobotLog;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.TuningAndTrajectories.Constants.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.SampleMecanumDrive;
 
 import java.util.Objects;
 
@@ -65,10 +63,6 @@ public class ManualFeedforwardTuner extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        if (RUN_USING_ENCODER) {
-            RobotLog.setGlobalErrorMsg("Feedforward constants usually don't need to be tuned " +
-                    "when using the built-in drive motor velocity PID.");
-        }
 
         Telemetry telemetry = new MultipleTelemetry(this.telemetry, dashboard.getTelemetry());
 

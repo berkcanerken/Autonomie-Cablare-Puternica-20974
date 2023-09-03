@@ -1,8 +1,7 @@
 package org.firstinspires.ftc.teamcode.TuningAndTrajectories.Dashboard;
 
-import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.Constants.DriveConstants.MAX_RPM;
-import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.Constants.DriveConstants.RUN_USING_ENCODER;
-import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.Constants.DriveConstants.rpmToVelocity;
+import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.DriveConstants.MAX_RPM;
+import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.DriveConstants.rpmToVelocity;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
@@ -11,11 +10,10 @@ import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.util.NanoClock;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.util.RobotLog;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.internal.system.Misc;
-import org.firstinspires.ftc.teamcode.TuningAndTrajectories.Constants.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.TuningAndTrajectories.util.LoggingUtil;
 import org.firstinspires.ftc.teamcode.TuningAndTrajectories.util.RegressionUtil;
 
@@ -40,10 +38,7 @@ public class AutomaticFeedforwardTuner extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        if (RUN_USING_ENCODER) {
-            RobotLog.setGlobalErrorMsg("Feedforward constants usually don't need to be tuned " +
-                    "when using the built-in drive motor velocity PID.");
-        }
+
 
         Telemetry telemetry = new MultipleTelemetry(this.telemetry, FtcDashboard.getInstance().getTelemetry());
 
