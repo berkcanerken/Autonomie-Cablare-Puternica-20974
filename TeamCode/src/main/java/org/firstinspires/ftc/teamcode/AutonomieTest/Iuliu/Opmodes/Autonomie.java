@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.AutonomieTest.Iuliu;
+package org.firstinspires.ftc.teamcode.AutonomieTest.Iuliu.Opmodes;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;

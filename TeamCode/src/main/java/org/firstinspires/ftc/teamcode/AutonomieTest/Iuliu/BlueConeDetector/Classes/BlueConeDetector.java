@@ -23,8 +23,8 @@ public class BlueConeDetector extends OpenCvPipeline {
     public Mat processFrame(Mat input) {
         Imgproc.cvtColor(input, hsvImage, Imgproc.COLOR_RGB2HSV);
 
-        Scalar lowerBlue = new Scalar(80, 50, 50);
-        Scalar upperBlue = new Scalar(160, 255, 255);
+        Scalar lowerBlue = new Scalar(208, 83, 100);
+        Scalar upperBlue = new Scalar(240, 100, 100);//H S V
 
         Core.inRange(hsvImage, lowerBlue, upperBlue, mask);
 
