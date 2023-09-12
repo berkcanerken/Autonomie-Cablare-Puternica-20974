@@ -1,21 +1,16 @@
 package org.firstinspires.ftc.teamcode.AutonomieTest.Mara;
 
-import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.SampleMecanumDrive.PowerX;
-import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.SampleMecanumDrive.PowerY;
-import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.SampleMecanumDrive.ServoDD;
-import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.SampleMecanumDrive.ServoDS;
-import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.SampleMecanumDrive.ServoID;
-import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.SampleMecanumDrive.ServoIS;
-import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.SampleMecanumDrive.sensor;
+import static org.firstinspires.ftc.teamcode.AutonomieTest.Mara.constants.*;
 import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.SampleMecanumDrive.servol;
 import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.SampleMecanumDrive.servor;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.SampleMecanumDrive;
 
-@com.qualcomm.robotcore.eventloop.opmode.TeleOp(name="TeleOpMara")
-public class TeleOp extends LinearOpMode {
+@TeleOp(name="TeleOpMara")
+public class TeleOp1 extends LinearOpMode {
 
     SampleMecanumDrive drive;
 

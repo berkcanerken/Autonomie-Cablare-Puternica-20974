@@ -40,7 +40,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.gamepad2;
 import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.DriveConstants.MAX_ACCEL;
 import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.DriveConstants.MAX_ANG_ACCEL;
 import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.DriveConstants.MAX_ANG_VEL;
@@ -80,14 +79,6 @@ public class SampleMecanumDrive extends MecanumDrive {
     public static Servo servo;
     public static ColorSensor sensor;
     private List<DcMotorEx> motors;
-
-    public static double ServoDS=0.3; //servo deschis stanga
-    public static double ServoDD=0.4;
-    public static double ServoIS=0.4;
-    public static double ServoID=0.6;
-
-    public static double PowerY=gamepad2.left_stick_y;;
-    public static double PowerX=gamepad2.right_stick_x;
 
     private IMU imu;
     private VoltageSensor batteryVoltageSensor;
