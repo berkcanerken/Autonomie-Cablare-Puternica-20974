@@ -62,7 +62,7 @@ public class TeleOp1 extends LinearOpMode {
                 x=0.5;
             }
         }
-        //giani
+        //giani 1
         frontLeftMotor.setPower(frontLeftPower);
         backLeftMotor.setPower(backLeftPower);
         frontRightMotor.setPower(frontRightPower);
