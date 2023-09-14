@@ -6,6 +6,8 @@ import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstan
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.SampleMecanumDrive;
 
@@ -18,6 +20,13 @@ public class TeleOp1 extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
 
         drive = new SampleMecanumDrive(hardwareMap);
+        backLeftMotor= (DcMotor) hardwareMap.get(constants.class,"motorLB");
+        frontLeftMotor= (DcMotor) hardwareMap.get(constants.class,"motorLF");
+        backRightMotor= (DcMotor) hardwareMap.get(constants.class,"motorRB");
+        frontLeftMotor= (DcMotor) hardwareMap.get(constants.class,"motorRF");
+
+        backLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        frontLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
         waitForStart();
 
@@ -38,25 +47,31 @@ public class TeleOp1 extends LinearOpMode {
             }
             if(gamepad2.dpad_up)
             {
-                PowerY=0.5;
+                y=0.5;
             }
             if(gamepad2.dpad_down)
             {
-                PowerY=-0.5;
+                y=-0.5;
             }
             if(gamepad2.dpad_right)
             {
-                PowerX=0.5;
+                x=-0.5;
             }
             if(gamepad2.dpad_left)
             {
-                PowerX=-0.5;
+                x=0.5;
             }
         }
+
+        frontLeftMotor.setPower(frontLeftPower);
+        backLeftMotor.setPower(backLeftPower);
+        frontRightMotor.setPower(frontRightPower);
+        backRightMotor.setPower(backRightPower);
 
         if(isStopRequested())
         {
             return;
         }
+        idle();
     }
 }
