@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.AutonomieTest.Mara;
 
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.gamepad1;
 import static org.firstinspires.ftc.teamcode.AutonomieTest.Mara.constants.*;
 import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.SampleMecanumDrive.servol;
 import static org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.SampleMecanumDrive.servor;
@@ -11,7 +12,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import org.firstinspires.ftc.teamcode.TuningAndTrajectories.TuningConstants.SampleMecanumDrive;
 
-@TeleOp(name="TeleOpMara")
+@TeleOp(name="TeleOpMara",group ="Mara")
 public class TeleOp1 extends LinearOpMode {
 
     SampleMecanumDrive drive;
@@ -20,56 +21,60 @@ public class TeleOp1 extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
 
         drive = new SampleMecanumDrive(hardwareMap);
-        backLeftMotor= (DcMotor) hardwareMap.get(constants.class,"motorLB");
-        frontLeftMotor= (DcMotor) hardwareMap.get(constants.class,"motorLF");
-        backRightMotor= (DcMotor) hardwareMap.get(constants.class,"motorRB");
-        frontLeftMotor= (DcMotor) hardwareMap.get(constants.class,"motorRF");
+        backLeftMotor = (DcMotor) hardwareMap.get(constants.class, "motorLB");
+        frontLeftMotor = (DcMotor) hardwareMap.get(constants.class, "motorLF");
+        backRightMotor = (DcMotor) hardwareMap.get(constants.class, "motorRB");
+        frontLeftMotor = (DcMotor) hardwareMap.get(constants.class, "motorRF");
 
         backLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         frontLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
+        double y = -gamepad1.left_stick_y / 5;
+        double x = -gamepad1.left_stick_x / 5;
+
         waitForStart();
 
         //ServoDS, ServoDD, ServoIS, ServoID, PowerX, PowerY
-        while(opModeIsActive())
-        {
+        while (opModeIsActive()) {
             //gamepad1 sa foloseasca miscarea bratului si a servourilor
             //gamepad2 sa foloseasca miscarea robotului
-            if(gamepad1.a)
-            {
+            if (gamepad1.a) {
                 servol.setPosition(ServoDS);
                 servor.setPosition(ServoDD);
             }
-            if(gamepad1.b)
-            {
+            if (gamepad1.b) {
                 servol.setPosition(ServoIS);
                 servor.setPosition(ServoID);
             }
-            if(gamepad2.dpad_up)
-            {
-                y=0.5;
+
+            if (gamepad2.dpad_up) {
+                y = 0.5;
             }
-            if(gamepad2.dpad_down)
-            {
-                y=-0.5;
+            if (gamepad2.dpad_down) {
+                y = -0.5;
             }
-            if(gamepad2.dpad_right)
-            {
-                x=-0.5;
+            if (gamepad2.dpad_right) {
+                x = -0.5;
             }
-            if(gamepad2.dpad_left)
-            {
-                x=0.5;
+            if (gamepad2.dpad_left) {
+                x = 0.5;
             }
         }
-        //giani1
+
+        double rx = gamepad1.right_stick_x * 0.5;
+
+        double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
+        double frontLeftPower = (y - x + rx) / denominator;
+        double backLeftPower = (y + x + rx) / denominator;
+        double frontRightPower = (y + x - rx) / denominator;
+        double backRightPower = (y - x - rx) / denominator;
+
         frontLeftMotor.setPower(frontLeftPower);
         backLeftMotor.setPower(backLeftPower);
         frontRightMotor.setPower(frontRightPower);
         backRightMotor.setPower(backRightPower);
 
-        if(isStopRequested())
-        {
+        if (isStopRequested()) {
             return;
         }
         idle();
