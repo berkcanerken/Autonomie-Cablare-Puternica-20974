@@ -23,8 +23,8 @@ public class BlueConeDetector extends OpenCvPipeline {
     public Mat processFrame(Mat input) {
         Imgproc.cvtColor(input, hsvImage, Imgproc.COLOR_RGB2HSV);
 
-        Scalar lowerBlue = new Scalar(208, 83, 100);
-        Scalar upperBlue = new Scalar(240, 100, 100);
+        Scalar lowerBlue = new Scalar(200, 150, 210);
+        Scalar upperBlue = new Scalar(280, 180, 255);
 
         Core.inRange(hsvImage, lowerBlue, upperBlue, mask);
 
@@ -32,7 +32,7 @@ public class BlueConeDetector extends OpenCvPipeline {
         Imgproc.findContours(mask, contours, hierarchy, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE);
 
         Mat processedFrame = input.clone();
-        Imgproc.drawContours(processedFrame, contours, -1, new Scalar(0, 255, 0), 2);
+        Imgproc.drawContours(processedFrame, contours, -1, new Scalar(0, 255, 0), 5);
 
         // Calculate the position of the detected square
         calculateSquarePosition();

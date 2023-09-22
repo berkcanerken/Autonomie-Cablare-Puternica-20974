@@ -21,7 +21,7 @@ public class initCamera {
         externalCamera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
             @Override
             public void onOpened() {
-                externalCamera.startStreaming(320, 240, OpenCvCameraRotation.UPSIDE_DOWN);
+                externalCamera.startStreaming(560, 340, OpenCvCameraRotation.UPSIDE_DOWN);
             }
 
             @Override
