@@ -23,7 +23,8 @@ public class TeleOp1 extends LinearOpMode {
         backLeftMotor = (DcMotor) hardwareMap.get(constants.class, "motorLB");
         frontLeftMotor = (DcMotor) hardwareMap.get(constants.class, "motorLF");
         backRightMotor = (DcMotor) hardwareMap.get(constants.class, "motorRB");
-        frontLeftMotor = (DcMotor) hardwareMap.get(constants.class, "motorRF");
+        frontRightMotor = (DcMotor) hardwareMap.get(constants.class, "motorRF"); 
+
 
         backLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         frontLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -46,18 +47,10 @@ public class TeleOp1 extends LinearOpMode {
                 servor.setPosition(ServoID);
             }
 
-            if (gamepad2.dpad_up) {
-                y = 0.5;
-            }
-            if (gamepad2.dpad_down) {
-                y = -0.5;
-            }
-            if (gamepad2.dpad_right) {
-                x = -0.5;
-            }
-            if (gamepad2.dpad_left) {
-                x = 0.5;
-            }
+            if (gamepad2.dpad_up) y = 0.5;
+            if (gamepad2.dpad_down) y = -0.5;
+            if (gamepad2.dpad_right) x = -0.5;
+            if (gamepad2.dpad_left) x = 0.5;
         }
 
         double rx = gamepad1.right_stick_x * 0.5;

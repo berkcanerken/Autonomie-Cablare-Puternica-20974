@@ -76,7 +76,7 @@ public class SampleMecanumDrive extends MecanumDrive {
     private DcMotorEx leftFront, leftRear, rightRear, rightFront;
     public static Servo servol;
     public static Servo servor;
-    public static Servo servo;
+    //public static Servo servo;
     public static ColorSensor sensor;
     private List<DcMotorEx> motors;
 
