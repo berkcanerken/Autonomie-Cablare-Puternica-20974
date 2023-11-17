@@ -61,7 +61,7 @@ public class TeleOp1 extends LinearOpMode {
                 telemetry.addData("Razvi ","Esti un figurant");
                 telemetry.update();
             }
-            //giumbusluc
+            //giumbusluc23
 
             if (gamepad2.dpad_up) y = 0.5;
             if (gamepad2.dpad_down) y = -0.5;
