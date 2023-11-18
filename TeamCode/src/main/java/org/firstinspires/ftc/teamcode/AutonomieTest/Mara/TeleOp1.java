@@ -44,14 +44,20 @@ public class TeleOp1 extends LinearOpMode {
         double x = -gamepad1.left_stick_x / 5;
 
         waitForStart();
-
+        servol.setPosition(ServoDS);
+        servor.setPosition(ServoDD);
+       // difservo.setPoition(Servopoz...);
         //ServoDS, ServoDD, ServoIS, ServoID, PowerX, PowerY
         while (opModeIsActive()) {
             if (gamepad2.a) {
+                //servo 1 
+                sleep(1000);
                 servol.setPosition(ServoDS);
                 servor.setPosition(ServoDD);
             }
             if (gamepad2.b) {
+                               //servo 1 
+                sleep(1000);
                 servol.setPosition(ServoIS);
                 servor.setPosition(ServoID);
             }
