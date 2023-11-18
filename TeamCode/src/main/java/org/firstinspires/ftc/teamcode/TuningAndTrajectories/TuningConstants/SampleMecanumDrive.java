@@ -115,6 +115,7 @@ public class SampleMecanumDrive extends MecanumDrive {
 
         servol = hardwareMap.servo.get("servol");
         servor = hardwareMap.servo.get("servor");
+        difservo = hardwareMap.servo.get("servobrat");
         sensor = hardwareMap.colorSensor.get("sensor");
 
 
